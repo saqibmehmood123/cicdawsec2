@@ -19,25 +19,7 @@ jobs:
         run: mvn clean install -DskipTests
       - name: Login to docker hub
         run: docker login -u ${{secrets.DOCKERUSERNAME}}  -p ${{secrets.DOCKERPASSWORD}}
-
       - name: build docker image
         run: docker build -t saqib1234/aws2 .
       - name: push docker image
         run: docker push saqib1234/aws2:latest
-
-  deploy:
-
-    needs: build
-    name: deploy
-
-    runs-on: [aws-ec2]
-    steps:
-      - name: pull image from docker hub
-
-        run: docker pull saqib1234/aws2:latest
-      - name : delete old container
-        run : docker rm -f springboot-contianer
-
-      - name: run docker container
-
-        run: docker run -d -p  80:9091 springboot-contianer saqib1234/aws2:latest
