@@ -32,7 +32,6 @@ jobs:
 
       - name: pull image from docker hub
         run: docker pull saqib1234/aws1:latest
-      - name : delete old container
-        run : docker rm -f springboot-contianer
+      
       - name: run docker container
-        run: docker run -d -p  80:9091 springboot-contianer saqib1234/aws1:latest
+        run: docker run -d -p  80:9091  saqib1234/aws1:latest
