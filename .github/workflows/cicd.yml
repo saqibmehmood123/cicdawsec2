@@ -1,57 +1,43 @@
 name: CI/CD Pipeline
 on:
-  #Manually trigger workflow runs
-     #  workflow_dispatch:
-  #Trigger the workflow on push from the main branch
   push:
     branches:
-      - main
+      - [main]
 jobs:
   build:
-    #Depends on sonar's job
-#    needs: sonar
     name: Build
-    #Run on Ubuntu using the latest version .. following is github runner based on
-    #ubuntu system
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest]
     steps:
       - name : Checkout Source
-
-      #Check-out your repository under $GITHUB_WORKSPACE, so your workflow can access it
       - uses: actions/checkout@v1
-      #Set up JDK 11
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
           distribution: 'temurin'
           java-version: '17'
       - name: Build project
-        #This action allows caching dependencies and build outputs to improve workflow execution time.
         run: mvn clean install -DskipTests
       - name: Login to docker hub
-        #This action allows caching dependencies and build outputs to improve workflow execution time.
         run: docker login -u ${{secrets.DOCKERUSERNAME}}  -p ${{secrets.DOCKERPASSWORD}}
 
       - name: build docker image
-      #This action allows caching dependencies and build outputs to improve workflow execution time.
         run: docker build -t saqib1234/aws2 .
       - name: push docker image
-        #This action allows caching dependencies and build outputs to improve workflow execution time.
         run: docker push saqib1234/aws2:latest
 
   deploy:
-    #Depends on build's job
+
     needs: build
     name: deploy
-    #Run on Ubuntu using the latest version
+
     runs-on: [aws-ec2]
     steps:
       - name: pull image from docker hub
-        #Download the artifact which was uploaded in the build's job
+
         run: docker pull saqib1234/aws2:latest
       - name : delete old container
         run : docker rm -f springboot-contianer
 
       - name: run docker container
-        #Download the artifact which was uploaded in the build's job
+
         run: docker run -d -p  80:9091 springboot-contianer saqib1234/aws2:latest
