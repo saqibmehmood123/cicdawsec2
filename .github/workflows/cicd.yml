@@ -59,6 +59,8 @@ jobs:
         run: |
             sudo yum update -y
             sudo yum install docker -y
+            sudo systemctl start docker
+            sudo systemctl enable docker
       - name: Pull Image from docker hub
         run:  docker pull saqib1234/saqibrestews2:latest
       - name: Delete old container
