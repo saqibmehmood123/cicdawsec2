@@ -29,7 +29,7 @@ jobs:
   deploy:
     needs: build
     name: deploy
-    runs-on: [aws-ec2]
+    runs-on: [ec2]
     steps:
 
 
