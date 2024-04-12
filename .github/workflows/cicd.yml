@@ -64,7 +64,7 @@ jobs:
       - name: Delete old container
         run:  docker rm -f spring-boot-app-container
       - name: Run Docker Image
-        run:  docker run -d -p 8080:9091 --name spring-boot-app-container saqib1234/saqibrestews2
+        run:  docker run -d -p 8080:9091 --name spring-boot-app-container saqib1234/saqibrestews2:latest
 
 #name: CI/CD Pipeline
 #on:
