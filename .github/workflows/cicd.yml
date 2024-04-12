@@ -32,7 +32,7 @@ jobs:
     runs-on: [aws-ec3]
     steps:
       - name: pull image from docker hub
-        run: docker pull saqib1234/springbootrest  #  saqib1234/aws2
+        run: docker pull saqib1234/aws2
 #      - name: stop docker container
 #        run: service docker stop
 #      - name: start docker container
@@ -40,4 +40,4 @@ jobs:
       - name: delete old docker container
         run: docker rm -f saqibcontainer
       - name: run docker container
-        run: docker run -d -p  8080:9091  --name saqibcontainer saqib1234/springbootrest:latest
+        run: docker run -d -p  8080:9091  --name saqibcontainer saqib1234/aws2:latest
