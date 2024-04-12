@@ -45,7 +45,7 @@ jobs:
           tags: saqib1234/spring-boot-github-action-demo:latest
   deploy:
     needs: build
-    runs-on: [aws-ec2]
+    runs-on: [aws-ec3]
     steps:
       - name: Pull Image from docker hub
         run: sudo docker pull saqib1234/spring-boot-github-action-demo:latest
