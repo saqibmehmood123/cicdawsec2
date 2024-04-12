@@ -35,6 +35,9 @@ jobs:
 
       - name: pull image from docker hub
         run: docker pull saqib1234/aws2:latest
-
+      - name: stop docker container
+        run: service docker stop
+      - name: start docker container
+        run: service docker start
       - name: run docker container
         run: docker run -d -p  80:9091  saqib1234/aws2:latest
