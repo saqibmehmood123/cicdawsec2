@@ -61,6 +61,7 @@ jobs:
             sudo yum install docker -y
             sudo systemctl start docker
             sudo systemctl enable docker
+            sudo chmod 666 /var/run/docker.sock
       - name: Pull Image from docker hub
         run:  docker pull saqib1234/saqibrestews2:latest
         with:
