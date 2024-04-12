@@ -18,10 +18,10 @@ jobs:
         run: mvn clean install -DskipTests
 #      - name: Login to docker hub
 #        run: docker login -u ${{secrets.DOCKERUSERNAME}}  -p ${{secrets.DOCKERPASSWORD}}
-#      - name: build docker image
-#        run: docker build -t saqib1234/aws2 .
-#      - name: push docker image
-#        run: docker push saqib1234/aws2:latest
+      - name: build docker image
+        run: docker build -t saqib1234/aws2 .
+      - name: push docker image
+        run: docker push saqib1234/aws2:latest
   deploy:
     needs: build
     name: deploy
@@ -31,7 +31,7 @@ jobs:
         run: sudo chmod 777 /var/run/docker.sock
 
       - name: pull image from docker hub
-        run: docker pull saqib1234/aws1:latest
+        run: docker pull saqib1234/aws2:latest
 
       - name: run docker container
-        run: docker run -d -p  8080:9091  saqib1234/aws1:latest
+        run: docker run -d -p  8080:9091  saqib1234/aws2:latest
