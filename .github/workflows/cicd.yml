@@ -31,8 +31,6 @@ jobs:
     name: deploy
     runs-on: [aws-ec3]
     steps:
-
-
       - name: pull image from docker hub
         run: docker pull saqib1234/aws2
 #      - name: stop docker container
