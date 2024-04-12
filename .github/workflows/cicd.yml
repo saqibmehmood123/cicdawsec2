@@ -55,11 +55,11 @@ jobs:
 #      - name: Set up Docker Buildx
 #        uses: docker/setup-buildx-action@v3
       - name: Pull Image from docker hub
-        run: sudo docker pull saqib1234/saqibrestews2:latest
+        run:  docker pull saqib1234/saqibrestews2:latest
       - name: Delete old container
-        run: sudo docker rm -f spring-boot-app-container
+        run:  docker rm -f spring-boot-app-container
       - name: Run Docker Image
-        run: sudo docker run -d -p 8080:9091 --name spring-boot-app-container saqib1234/saqibrestews2
+        run:  docker run -d -p 8080:9091 --name spring-boot-app-container saqib1234/saqibrestews2
 
 #name: CI/CD Pipeline
 #on:
