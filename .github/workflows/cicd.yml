@@ -45,7 +45,7 @@ jobs:
           tags: saqib1234/saqibrestews2:latest
   deploy:
     needs: build
-    runs-on: [aws-ec3]
+    runs-on: [saqib]
     steps:
 #      - name: Login to Docker Hub
 #        uses: docker/login-action@v3
