@@ -41,7 +41,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: saqib1234/saqibrestews2:latest
+          tags: saqib1234/aws3:latest
   deploy:
     needs: build
     runs-on: [saqib]
@@ -63,12 +63,12 @@ jobs:
             sudo systemctl enable docker
             sudo chmod 666 /var/run/docker.sock
       - name: Pull Image from docker hub
-        run:  docker pull saqib1234/saqibrestews2:latest
-        
+        run:  docker pull saqib1234/aws3:latest
+
       - name: Delete old container
         run:  docker rm -f spring-boot-app-container
       - name: Run Docker Image
-        run:  docker run -d -p 8080:9091 --name spring-boot-app-container saqib1234/saqibrestews2:latest
+        run:  docker run -d -p 8080:9091 --name spring-boot-app-container saqib1234/aws3:latest
 
 #name: CI/CD Pipeline
 #on:
