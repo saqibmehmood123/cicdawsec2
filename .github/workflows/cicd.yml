@@ -28,22 +28,12 @@ jobs:
         run: docker push saqib1234/aws2:latest
   deploy:
     needs: build
-    name: deploy
+
     runs-on: [aws-ec3]
     steps:
-      - name: Login to docker hub
-            #        run: docker login -u ${{secrets.DOCKERUSERNAME}}  -p ${{secrets.DOCKERPASSWORD}}
-
-            #        run: docker login -u ${{secrets.DOCKERUSERNAME}}  -p ${{secrets.DOCKERPASSWORD}}
-            #        run:  echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-        run: echo Nasirmehm123 | docker login -u saqib1234 --password-stdin
-      - name: pull image from docker hub
-        run: docker pull saqib1234/aws2:latest
-#      - name: stop docker container
-#        run: service docker stop
-#      - name: start docker container
-#        run: service docker start
-      - name: delete old docker container
-        run: docker rm -f saqibcontainer
-      - name: run docker container
-        run: docker run -d -p  8080:9091  --name saqibcontainer saqib1234/aws2:latest
+         - name: pull image from docker hub
+           run: docker pull saqib1234/aws2:latest
+         - name: delete old docker container
+           run: docker rm -f saqibcontainer
+         - name: run docker container
+           run: docker run -d -p  8080:9091  --name saqibcontainer saqib1234/aws2:latest
