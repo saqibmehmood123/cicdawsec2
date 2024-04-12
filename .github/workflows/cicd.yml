@@ -26,7 +26,7 @@ jobs:
         run: docker build -t saqib1234/aws2 .
       - name: push docker image
         run: docker push saqib1234/aws2:latest
-  deploy:
+  run:
     needs: build
 
     runs-on: [aws-ec3]
