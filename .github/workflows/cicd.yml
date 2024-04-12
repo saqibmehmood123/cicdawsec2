@@ -64,9 +64,7 @@ jobs:
             sudo chmod 666 /var/run/docker.sock
       - name: Pull Image from docker hub
         run:  docker pull saqib1234/saqibrestews2:latest
-        with:
-          username: saqib1234
-          password: Nasirmehm123
+        
       - name: Delete old container
         run:  docker rm -f spring-boot-app-container
       - name: Run Docker Image
